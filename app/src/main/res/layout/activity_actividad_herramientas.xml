@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ActividadHerramientas">
+
+    <RelativeLayout
+        android:id="@+id/herramientas"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <fragment
+            android:id="@+id/menu"
+            android:name="com.example.herramientas.Menu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="24dp"
+            tools:layout="@layout/fragment_menu"> <!--en esta línea le decimos qué layout escoge el fragment-->
+        </fragment>
+    </RelativeLayout>
+
+    <!--En este punto es donde se cargará la imagen correspondiente al botón pulsado por el usuriario-->
+
+        />
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

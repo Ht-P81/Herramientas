@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_gravity="center_horizontal"
+    tools:context=".Menu">
+
+    <!-- Vamos a agregar contenido al Fragment -->
+
+    <!-- Empezamos creando un contenedor al fragmento -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_horizontal"
+        android:weightSum="1">
+    
+    <!-- Vamos a especificar el primer botón, el de la linterna -->
+    <ImageButton android:id="@+id/linterna"
+        style="@style/botones"
+        android:src="@drawable/linterna"/>
+
+        <!-- Espacio entre los botones -->
+        <Space style = "@style/espacio"></Space>
+
+    <!-- Vamos a especificar el segundo botón, el del nivel -->
+    <ImageButton android:id="@+id/nivel"
+        style="@style/botones"
+        android:src="@drawable/nivel"/>
+
+        <Space style = "@style/espacio"></Space>
+
+    <!-- Vamos a especificar el tercer botón, el de la musica -->
+    <ImageButton android:id="@+id/musica"
+        style="@style/botones"
+        android:src="@drawable/musica"/>
+    </LinearLayout>
+</RelativeLayout>
