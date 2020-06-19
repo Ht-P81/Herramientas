@@ -4,22 +4,33 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center"
     tools:context=".ActividadHerramientas">
+
+    <fragment
+        android:id="@+id/menu"
+        android:name="com.example.herramientas.Menu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="23dp"
+        android:gravity="center"
+        tools:layout="@layout/fragment_menu"
+        tools:ignore="MissingConstraints"> <!--en esta línea le decimos qué layout escoge el fragment-->
+    </fragment>
 
     <RelativeLayout
         android:id="@+id/herramientas"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <fragment
-            android:id="@+id/menu"
-            android:name="com.example.herramientas.Menu"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_marginTop="24dp"
-            tools:layout="@layout/fragment_menu"> <!--en esta línea le decimos qué layout escoge el fragment-->
-        </fragment>
+
     </RelativeLayout>
 
     <!--En este punto es donde se cargará la imagen correspondiente al botón pulsado por el usuriario-->

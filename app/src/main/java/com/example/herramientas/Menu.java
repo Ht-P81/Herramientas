@@ -17,6 +17,12 @@ public class Menu extends Fragment {
     //vamos a crear un array de los botones (linterna, altavoz, giroscopio)
     private final int[] BOTONESMENU={R.id.linterna, R.id.musica, R.id.nivel};
 
+    //array que almacena los botones iluminados
+    private final int[] BOTONESILUMINADOS = {R.drawable.linterna2, R.drawable.musica2, R.drawable.nivel2};
+
+    //variable que viajará desde las activdades hasta aquí para saber que botón se pulsó
+    private int boton;
+
     public Menu() {
         // Required empty public constructor
     }
@@ -28,6 +34,17 @@ public class Menu extends Fragment {
         // Inflate the layout for this fragment
         View mimenu = inflater.inflate(R.layout.fragment_menu, container, false); //devuelve un view que será el fragmento que queremos cargar
 
+
+        boton = -1; //con esto evitamos que tome el valor 0 que está contemplado en el array, posición 0 es linterna (por eso se ilumina de amarillo sino hacemos esto).
+        //No se puede ejecutar la primera vez que la iniciemos pa no ha recibo la info
+        //Esta instrucción solo debe llevarse a cabo si ha recibido la información de la actividad herramientas, pero si se ejecuta por primera vez caerá la aplicación,
+        //entonces se deberá aplicar esta información SI es diferente de nulo, es decir si NO es la primera vez sí se ejecuta
+        if (getArguments()!= null) {
+            //la información que estamos enviando desde actividad herramientas. Recordamos que cada vez que nosotros construimos un menú todo parte de
+            // OncreateView en clase Menu, es dentro de ese método donde definitivamente se crea ese fragment de menú
+            boton = getArguments().getInt("BOTONPULSADO");//rescatamos la información que viaja en el bundle.
+        }
+
         //crear objeto de tipo ImageButon para trabajar con los botones del menu
         ImageButton botonmenu;
 
@@ -37,6 +54,11 @@ public class Menu extends Fragment {
 
             //almacenamos dentro de la variable objeto botonmenu cada una de las variables;
             botonmenu = (ImageButton) mimenu.findViewById(BOTONESMENU[i]);
+
+            //aqui le decimos al bucle for que SI el boton es igual a i coloque la imagen del array hemos creado para los botones iluminados
+            if(boton == i){
+                botonmenu.setImageResource(BOTONESILUMINADOS[i]);
+            }
 
             //debemos saber en qué botón hemos pulsado, esta variable es la misma que pasamos por parámetro al método de la interfaz comunicaMenu
             final int queBoton = i;

@@ -41,6 +41,23 @@ public class ActividadHerramientas extends AppCompatActivity implements Comunica
 
         FragmentTransaction miTransaccion = miManejador.beginTransaction();
 
+
+        //aqui le decimos a los botones iluminados sobre que boton se ha pulsado
+        //programar de forma programática
+        //esto es posible gracias al princpio de es un... pues menú está heredando de fragment
+        Fragment menu_iluminado = new Menu();
+
+        //mediante un bundle vamos a pasarle la información a este nuevo menu_iluminado
+        Bundle datos = new Bundle();
+        datos.putInt("BOTONPULSADO", queboton);//ahora esta empaquetada toda la información del boton pulsado
+
+        //mediante este método se le pasa la información desde esta actividad hasta la clase menu
+        //de tal forma que nuestro nuevo fragmento de menu (menu iluminado) ya sabe que tiene que crear un nuevo fragmento de menu
+        menu_iluminado.setArguments(datos);
+
+        //aquí es donde le decimos a nuestra actividad que reemplace el menu que hay en pantalla por este nuevo que hemos creado
+        miTransaccion.replace(R.id.menu, menu_iluminado);
+
         miTransaccion.replace(R.id.herramientas, misFragmentos[queboton] );
 
         miTransaccion.commit();
