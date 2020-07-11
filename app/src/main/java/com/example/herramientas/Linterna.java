@@ -1,5 +1,6 @@
 package com.example.herramientas;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -61,11 +62,24 @@ public class Linterna extends Fragment {
 
             botonCamara.setImageResource(R.drawable.linterna2);
 
+            //para detectar en qué actividad nos encontramos
+            Activity estaActividad = getActivity();
+
+            //hay que enviar al menu de la interfaz comunicamenú la información.
+            //esta línea así da error "estaActividad.menu(queBoton);"
+            // pq estoy utilizando una variable de tipo activity que es de una actividad,
+            // para llamar a un método que es menú que pertenece a una interfaz llamada comunica comunica menu:
+            //entonces no corresponden los tipos, para que correspondan los tipos hacemos un casting
+            ((ManejaFlashCamara)estaActividad).enciendeapaga(encendida);
+
         }
 
         public void botonApagaFlash(){
 
             botonCamara.setImageResource(R.drawable.linterna);
+
+            Activity estaActividad = getActivity();
+            ((ManejaFlashCamara)estaActividad).enciendeapaga(encendida);
         }
 
 }

@@ -2,16 +2,28 @@ package com.example.herramientas;
 
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.Context;
+import android.hardware.camera2.CameraManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.widget.Toast;
+
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 //import androidx.fragment.app.Fragment;
 
-public class ActividadHerramientas extends AppCompatActivity implements ComunicaMenu{
+public class ActividadHerramientas extends AppCompatActivity implements ComunicaMenu, ManejaFlashCamara{
 
     //array que guardará los distintos fragment que dependera del botón pulsado (linterna, musica, o giroscopio).
-    Fragment[] misFragmentos;
+    private Fragment[] misFragmentos;
 
+    private CameraManager micamara;
+
+    private String idCamara;
+
+
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,9 +44,20 @@ public class ActividadHerramientas extends AppCompatActivity implements Comunica
 
         //con esto extraemos esa información y se la pasamos al método menu
         menu(extras.getInt("BOTONPULSADO"));
+
+        micamara= (CameraManager) getSystemService(Context.CAMERA_SERVICE);
+
+        try{
+            idCamara = micamara.getCameraIdList()[0]; //array de String que dice el método para identicar cada una de las cámaras...
+        }catch (Exception e){
+
+            e.printStackTrace();
+        }
+
     }
 
     @Override
+    //desarrollo del metodo que obliga a implementar la interfaz ComunicaMenu
     public void menu(int queboton) {
 
         FragmentManager miManejador = getFragmentManager();
@@ -61,5 +84,26 @@ public class ActividadHerramientas extends AppCompatActivity implements Comunica
         miTransaccion.replace(R.id.herramientas, misFragmentos[queboton] );
 
         miTransaccion.commit();
+    }
+
+    @Override
+    public void enciendeapaga(boolean estadoflash) {
+        try {
+            if (estadoflash) {
+                Toast.makeText(this, "Flash apagado", Toast.LENGTH_SHORT).show();
+                if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.M) {
+                    micamara.setTorchMode(idCamara, false);
+                }
+            } else {
+                Toast.makeText(this, "Flash encendido", Toast.LENGTH_LONG).show();
+
+                if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.M) {
+                    micamara.setTorchMode(idCamara, true);
+                }
+            }
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 }
