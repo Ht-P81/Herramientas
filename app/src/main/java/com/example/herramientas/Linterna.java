@@ -1,6 +1,7 @@
 package com.example.herramientas;
 
 import android.app.Activity;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -33,6 +34,14 @@ public class Linterna extends Fragment {
 
         //con esta línea ya tenemos almacenado la imagen de la linterna en la variable botonCamara
         botonCamara=(ImageView)fragmento.findViewById(R.id.linterna);
+
+
+        if(encendida) botonCamara.setImageResource(R.drawable.linterna2);
+
+
+        //con esta línea de código podemos decirle a nuestra aplicación en sus fragmentos que pueda girar sin caerse la app
+        //hay que hacer lo mismo en todos los fragmentos.
+        getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
 
         //Ahora vamos a ponerlo a la escucha
         botonCamara.setOnClickListener(new View.OnClickListener(){

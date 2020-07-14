@@ -106,4 +106,9 @@ public class ActividadHerramientas extends AppCompatActivity implements Comunica
             e.printStackTrace();
         }
     }
+
+    //con este método, si le damos al boton de salir del dispositivo sale.
+    public void onBackPressed(){
+        moveTaskToBack(true);
+    }
 }

@@ -1,5 +1,6 @@
 package com.example.herramientas;
 import android.content.Context;
+import android.content.pm.ActivityInfo;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -51,6 +52,11 @@ public class Nivel extends Fragment implements SensorEventListener {
         // Inflate the layout for this fragment
         //ahora mismo a interfaz pantalla la tenemos en la variable pantalla
         //return inflater.inflate(R.layout.fragment_nivel, container, false);
+
+        //con esta línea de código podemos decirle a nuestra aplicación en sus fragmentos que pueda girar sin caerse la app
+        //hay que hacer lo mismo en todos los fragmentos.
+        getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
+
         return pantalla;
     }
 
